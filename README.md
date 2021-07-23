@@ -49,7 +49,7 @@ $ pip install docker-compose
 
 ```
 $ git clone https://wwwin-github.cisco.com/gve/gve_devnet_new_employee_onboarding.git
-$ cd new-employee-onboarding
+$ cd gve_devnet_new_employee_onboarding
 ```
 4. Set up environment
     1. Create a Webex integration + bot [here](https://developer.webex.com/)
