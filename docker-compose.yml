@@ -1,0 +1,46 @@
+version: '3'
+services:
+  web:
+    build: ./app
+    container_name: neo-dashboard
+    restart: always
+    environment: 
+      app_id: 'Azure Application ID'
+      secret: 'Azure Application secret'
+      access_token: ''
+      WEBEX_BASE_URL: https://webexapis.com
+      WEBEX_ACCESS_TOKEN: 'Webex access token'
+      WEBEX_REFRESH_TOKEN: 'Webex refresh token'
+      WEBEX_BOT_TOKEN: 'Webex bot token'
+      DUO_INTEGRATION_KEY: 'Duo integration key'
+      DUO_SECRET_KEY: 'Duo secret key'
+      DUO_DOMAIN: 'Duo domain'
+      cucm_ip: 'CUCM IP address'
+      cucm_username: 'CUCM admin username'
+      cucm_password: 'CUCM admin password'
+      MONGO_USER: 'MongoDB username (same as for db container)'
+      MONGO_PASS: 'MongoDB password (same as for db container)'
+    expose:
+      - "8080"
+  nginx:
+    container_name: nginx
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - neo-dashboard        
+  db:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 'MongoDB username (same as for web container)'
+      MONGO_INITDB_ROOT_PASSWORD: 'MongoDB password (same as for web container)'
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data_container:/data/db
+
+volumes:
+  mongodb_data_container:
+

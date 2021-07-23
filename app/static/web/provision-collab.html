@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="locale" content="US">
+        <meta name="language" content="en">
+        <meta name="country" content="US">
+        <meta name="HandheldFriendly" content="True">
+        <meta name="MobileOptimized" content="320">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>New Employee Onboarding</title>
+        <link rel="stylesheet" href="../css/cui-standard.css">
+        <link rel="icon" type="image/vnd.microsoft.icon" href="//www.cisco.com/favicon.ico">
+        <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="///www.cisco.com/favicon.ico">
+        <script src="../js/pipeline.js"></script>
+    </head>
+
+    <body class="cui" onload="checkProducts();getUser();">
+        <div class="content-fluid">
+            <div class="sidebar sidebar--indigo">
+                <div class="sidebar__header">
+                    <div class="sidebar__header-title">
+                        <a href="/" class="header-bar__logo">
+                            <span class="icon-cisco"></span>
+                        </a>
+                    </div>
+                </div>
+                <ul>
+                    <li class="sidebar__item"><a href="../../">Dashboard</a></li>
+                    <li class="sidebar__item"><a href="user-overview.html">User Overview</a></li>
+                    <li class="sidebar__item"><a href="https://www.duo.com//" target="_blank"><span class="icon-export"></span>Duo Dashboard</a></li>
+                    <li class="sidebar__item"><a href="https://meraki.cisco.com/" target="_blank"><span class="icon-export"></span>Meraki Dashboard</a></li>
+                    <li class="sidebar__item"><a href="https://www.webex.com/" target="_blank"><span class="icon-export"></span>Webex Control Hub</a></li>
+                </ul>
+            </div>
+            <main>
+                <header class="header header--tall">
+                    <div class="header-bar container">
+                        <div class="header-bar__main">
+                            <div class="header-heading">
+                                <h1 class="page-title" style="margin-left:20px;">Cisco New Employee Provisioning Dashboard</h1>
+                                <a href="javascript:;" class="btn btn--icon" style="margin-left:30px;">
+                                    <span class="icon-search"></span>
+                                </a>
+                                <a href="javascript:;" class="btn btn--icon">
+                                    <span class="icon-alert"></span>
+                                </a>
+                                <a href="javascript:;" class="btn btn--icon">
+                                    <span class="icon-cog"></span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="header-toolbar">
+                            <a class="avatar" href="https://www.cisco.com/c/en/us/about/account.html" style="font-size:large;">John Doe</a>
+							<a class="btn btn--icon" href="https://www.cisco.com/autho/logout.html?ReturnUrl=https://www.cisco.com/web/fw/lo/logout.html" style="margin-left:10px;">
+								<span class="icon-sign-out"></span>
+							</a>
+                        </div>
+                    </div>
+                </header>
+
+                <div style="margin: 40px;">
+                    <div class="col-12 base-margin-bottom">
+                        <div class="ui-steps ui-steps--success">
+                            <div class="ui-step visited">
+                                <div class="step__icon">
+                                    <span class="icon-check"></span>
+                                </div>
+                                <div class="step__label">Select Domain</div>
+                            </div>
+                            <div class="ui-step active">
+                                <div class="step__icon">
+                                    <span class="icon-check"></span>
+                                </div>
+                                <div class="step__label">Provision Collaboration</div>
+                            </div>
+                            <div class="ui-step">
+                                <div class="step__icon">
+                                    <span class="icon-check"></span>
+                                </div>
+                                <div class="step__label">Provision Network Access</div>
+                            </div>
+                            <div class="ui-step">
+                                <div class="step__icon">
+                                    <span class="icon-check"></span>
+                                </div>
+                                <div class="step__label">Provision Security</div>
+                            </div>
+                            <div class="ui-step">
+                                <div class="step__icon">
+                                    <span class="icon-check"></span>
+                                </div>
+                            <div class="step__label">Provisioning Results</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="h4" style="margin: 20px;margin-top: 40px;">
+                    <span class="h2">Which Collaboration services would you like to onboard</span>
+                    <span class="h2" id="user" style="font-weight:bold;"></span>
+                    <span class="h2">into?</span>
+                </div>
+
+                <div class="section" style="margin: 20px">
+                    <div class="row base-margin-bottom">
+                        <div class="col-md-6">
+                            <div class="form-group" id='checkboxes'>
+                                <label class="checkbox" style="margin:20px;">
+                                    <input type="checkbox" onclick="checkDomain()">
+                                    <span class="checkbox__input"></span>
+                                    <span class="checkbox__label">Provision Video Device</span>
+                                </label>
+                                <label class="checkbox" style="margin:20px;" id="collab-messaging" onclick="checkDomain()">
+                                    <input type="checkbox">
+                                    <span class="checkbox__input"></span>
+                                    <span class="checkbox__label">Provision Messaging</span>
+                                </label>
+                                <label class="checkbox" style="margin:20px;" onclick="checkDomain()">
+                                    <input type="checkbox">
+                                    <span class="checkbox__input"></span>
+                                    <span class="checkbox__label">Provision Meetings</span>
+                                </label>
+                                <label class="checkbox" style="margin:20px;" onclick="checkDomain();activatePrompt();">
+                                    <input type="checkbox">
+                                    <span class="checkbox__input"></span>
+                                    <span class="checkbox__label">Provision IP Phone</span>
+                                </label>
+                            </div>
+                            <div>
+                                <div style="margin-left:60px;">
+                                    <div class="form-group">
+                                        <div id="mac-prompt" class="form-group__text disabled">
+                                            <input id="mac-input" type="text">
+                                            <label for="input-size-default"><i><b>Enter IP phone mac address (12 digits):</b></i></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="margin-left:60px;">
+                                    <div class="form-group">
+                                        <div id="model-prompt" class="form-group__text disabled">
+                                            <input id="model-input" type="text">
+                                            <label for="input-size-default"><i><b>Enter IP phone model number (4 digits):</b></i></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section base-margin-bottom" style="margin-left: 20px">
+                    <a class="btn btn--success disabled" onclick="continuePipeline();" href="#" id="pipeline-continue">Continue</a>
+                    <a class="btn btn--primary" onclick="backPipeline();" href="#" id="pipeline-back">Back</a>
+                </div>
+
+                <footer class="footer footer--basic" style="position: absolute;bottom:0;left:0;right:0;">
+                    <div class="footer__links">
+                        <ul class="list">
+                            <li><a href="http://www.cisco.com/cisco/web/siteassets/contacts/index.html" target="_blank">Contacts</a></li>
+                            <li><a href="https://secure.opinionlab.com/ccc01/o.asp?id=jBjOhqOJ" target="_blank">Feedback</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/help.html" target="_blank">Help</a></li>
+                            <li><a href="http://www.cisco.com/c/en/us/about/sitemap.html" target="_blank">Site Map</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/legal/terms-conditions.html" target="_blank">Terms & Conditions</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/legal/privacy-full.html" target="_blank">Privacy Statement</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/legal/privacy-full.html#cookies" target="_blank">Cookie Policy</a></li>
+                            <li><a href="https://www.cisco.com/c/en/us/about/legal/trademarks.html" target="_blank">Trademarks</a></li>
+                        </ul>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </body>
+</html>
+
